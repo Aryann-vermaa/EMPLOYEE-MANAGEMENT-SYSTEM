@@ -1,6 +1,6 @@
 # EMS
 # LIVE DEMO : https://techems.netlify.app/
-# Credentials: Admin@me.com / employee@1.com / Password - 123
+# Credentials: Admin@me.com  employee@1.com  Password - 123
  
 
 An Employee Management System built with React.js for efficient employee data management, featuring CRUD operations, role-based access, and responsive UI. It simplifies employee tracking, department management, and performance monitoring.
