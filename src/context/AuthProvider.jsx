@@ -13,8 +13,13 @@ const AuthProvider = ({ children }) => {
         const {employees} = getLocalStorage()
         setUserData(employees)
     }, [])
-    
-    
+
+    // Save to localStorage whenever userData changes
+    useEffect(() => {
+        if (userData) {
+            localStorage.setItem('employees', JSON.stringify(userData))
+        }
+    }, [userData])
 
     return (
         <div>

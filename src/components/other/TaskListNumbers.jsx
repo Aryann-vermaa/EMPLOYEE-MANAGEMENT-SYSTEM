@@ -2,23 +2,68 @@ import React from 'react'
 
 const TaskListNumbers = ({data}) => {
   return (
-    <div className='flex mt-10 justify-between gap-5 screen'>
+    <div className='bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-6 animate-fadeInUp'>
+        <div className='mb-6'>
+            <h2 className='text-2xl font-bold text-white mb-2'>Task Overview</h2>
+            <p className='text-gray-300'>Your current task statistics</p>
+        </div>
         
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.newTask}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>New Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.completed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Completed Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 '>
-            <h2 className='text-3xl text-black font-bold'>{data.taskCounts.active}</h2>
-            <h3 className='text-xl mt-0.5 text-black font-medium'>Accepted Task</h3>
-        </div>
-        <div className='rounded-xl w-[45%] py-6 px-9 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80'>
-            <h2 className='text-3xl font-bold'>{data.taskCounts.failed}</h2>
-            <h3 className='text-xl mt-0.5 font-medium'>Failed Task</h3>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300'>
+                <div className='flex items-center justify-between'>
+                    <div>
+                        <h3 className='text-3xl font-bold text-blue-400'>{data.taskCounts.newTask}</h3>
+                        <p className='text-gray-300 text-sm font-medium'>New Tasks</p>
+                    </div>
+                    <div className='w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center'>
+                        <svg className='w-6 h-6 text-blue-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 6v6m0 0v6m0-6h6m-6 0H6' />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300'>
+                <div className='flex items-center justify-between'>
+                    <div>
+                        <h3 className='text-3xl font-bold text-green-400'>{data.taskCounts.completed}</h3>
+                        <p className='text-gray-300 text-sm font-medium'>Completed</p>
+                    </div>
+                    <div className='w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center'>
+                        <svg className='w-6 h-6 text-green-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300'>
+                <div className='flex items-center justify-between'>
+                    <div>
+                        <h3 className='text-3xl font-bold text-yellow-400'>{data.taskCounts.active}</h3>
+                        <p className='text-gray-300 text-sm font-medium'>In Progress</p>
+                    </div>
+                    <div className='w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center'>
+                        <svg className='w-6 h-6 text-yellow-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300'>
+                <div className='flex items-center justify-between'>
+                    <div>
+                        <h3 className='text-3xl font-bold text-red-400'>{data.taskCounts.failed}</h3>
+                        <p className='text-gray-300 text-sm font-medium'>Failed</p>
+                    </div>
+                    <div className='w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center'>
+                        <svg className='w-6 h-6 text-red-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   )

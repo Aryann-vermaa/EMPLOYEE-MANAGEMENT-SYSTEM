@@ -1,20 +1,108 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../context/AuthProvider'
 
-const AcceptTask = ({data}) => {
-    console.log();
+const AcceptTask = ({data, employeeId}) => {
+    const [userData, setUserData] = useContext(AuthContext)
+
+    const handleCompleteTask = () => {
+        const updatedUserData = userData.map(employee => {
+            if (employee.id === employeeId) {
+                const updatedTasks = employee.tasks.map(task => {
+                    if (task.taskTitle === data.taskTitle && task.taskDate === data.taskDate) {
+                        return {
+                            ...task,
+                            active: false,
+                            newTask: false,
+                            completed: true,
+                            failed: false
+                        }
+                    }
+                    return task
+                })
+                
+                // Update task counts
+                const updatedTaskCounts = {
+                    ...employee.taskCounts,
+                    active: employee.taskCounts.active - 1,
+                    completed: employee.taskCounts.completed + 1
+                }
+                
+                return {
+                    ...employee,
+                    tasks: updatedTasks,
+                    taskCounts: updatedTaskCounts
+                }
+            }
+            return employee
+        })
+        
+        setUserData(updatedUserData)
+        // alert('Task marked as completed!')
+    }
+
+    const handleFailTask = () => {
+        const updatedUserData = userData.map(employee => {
+            if (employee.id === employeeId) {
+                const updatedTasks = employee.tasks.map(task => {
+                    if (task.taskTitle === data.taskTitle && task.taskDate === data.taskDate) {
+                        return {
+                            ...task,
+                            active: false,
+                            newTask: false,
+                            completed: false,
+                            failed: true
+                        }
+                    }
+                    return task
+                })
+                
+                // Update task counts
+                const updatedTaskCounts = {
+                    ...employee.taskCounts,
+                    active: employee.taskCounts.active - 1,
+                    failed: employee.taskCounts.failed + 1
+                }
+                
+                return {
+                    ...employee,
+                    tasks: updatedTasks,
+                    taskCounts: updatedTaskCounts
+                }
+            }
+            return employee
+        })
+        
+        setUserData(updatedUserData)
+        // alert('Task marked as failed!')
+    }
+
   return (
-    <div className='flex-shrink-0 h-full w-[300px] p-5 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800  dark:shadow-cyan-800/80 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='  bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 text-sm px-3 py-1 rounded'>{data.category}</h3>
-                <h4 className='text-sm'>{data.taskDate}</h4>
+    <div className='flex-shrink-0 w-80 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300 animate-scaleIn'>
+            <div className='flex justify-between items-center mb-4'>
+                <span className='bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-medium border border-yellow-500/30'>
+                    {data.category}
+                </span>
+                <span className='text-gray-400 text-sm'>{data.taskDate}</span>
             </div>
-            <h2 className='mt-5 text-2xl font-semibold'>{data.taskTitle}</h2>
-            <p className='text-sm mt-2'>
+            
+            <h2 className='text-xl font-bold text-white mb-3'>{data.taskTitle}</h2>
+            <p className='text-gray-300 text-sm mb-6 leading-relaxed'>
                 {data.taskDescription}
             </p>
-            <div className='flex justify-between mt-6 '>
-                <button className='bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 rounded py-1 px-2 text-xs font-semibold'>Mark as Completed</button>
-                <button className='bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded  py-1 px-2 text-xs font-semibold'>Mark as Failed</button>
+            
+            <div className='space-y-3'>
+                <button 
+                    onClick={handleCompleteTask}
+                    className='w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-transparent'
+                >
+                    Mark as Completed
+                </button>
+                <button 
+                    onClick={handleFailTask}
+                    className='w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-transparent'
+                >
+                    Mark as Failed
+                </button>
             </div>
         </div>
   )

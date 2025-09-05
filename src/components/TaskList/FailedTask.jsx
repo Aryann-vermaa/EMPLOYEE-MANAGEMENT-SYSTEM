@@ -1,18 +1,25 @@
 import React from 'react'
 
-const FailedTask = () => {
+const FailedTask = ({data, employeeId}) => {
   return (
-    <div className='flex-shrink-0 h-full w-[300px] p-5 bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-lime-800 shadow-lg shadow-lime-500/50 dark:shadow-lg dark:shadow-lime-800/80 rounded-xl'>
-            <div className='flex justify-between items-center'>
-                <h3 className='bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 text-sm px-3 py-1 rounded'>{data.category}</h3>
-                <h4 className='text-sm'>{data.taskDate}</h4>
+    <div className='flex-shrink-0 w-80 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-6 hover-lift hover-glow transition-all duration-300 animate-scaleIn'>
+            <div className='flex justify-between items-center mb-4'>
+                <span className='bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-medium border border-red-500/30'>
+                    {data.category}
+                </span>
+                <span className='text-gray-400 text-sm'>{data.taskDate}</span>
             </div>
-            <h2 className='mt-5 text-2xl font-semibold'>{data.taskTitle}</h2>
-            <p className='text-sm mt-2'>
+            
+            <h2 className='text-xl font-bold text-white mb-3'>{data.taskTitle}</h2>
+            <p className='text-gray-300 text-sm mb-6 leading-relaxed'>
                 {data.taskDescription}
             </p>
-            <div className='mt-6'>
-                <button className='w-full bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded font-semibold py-1 px-2 text-xs'>Failed</button>
+            
+            <div className='flex items-center justify-center space-x-2 text-red-400'>
+                <svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                    <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                </svg>
+                <span className='font-semibold'>Failed</span>
             </div>
         </div>
   )
