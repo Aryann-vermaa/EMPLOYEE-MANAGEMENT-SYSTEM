@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Login = ({handleLogin}) => {
+const Login = ({handleLogin, showRegister}) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -84,6 +84,17 @@ const Login = ({handleLogin}) => {
                         Employee: employee@1.com / 123
                     </p>
                 </div>
+
+                                {/* Register Button */}
+                                <div className='mt-6 text-center'>
+                                    <button
+                                        type='button'
+                                        onClick={showRegister}
+                                        className='w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold py-2 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg'
+                                    >
+                                        New user? Register here
+                                    </button>
+                                </div>
             </div>
 
             {/* Footer */}
